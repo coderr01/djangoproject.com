@@ -175,7 +175,6 @@ def cancel_donation(request, hero):
     customer = stripe.Customer.retrieve(donation.stripe_customer_id)
     customer.subscriptions.retrieve(donation.stripe_subscription_id).delete()
 
-    donation.stripe_subscription_id = ""
     donation.save()
 
     messages.success(request, "Your donation has been canceled.")
